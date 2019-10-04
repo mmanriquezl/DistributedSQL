@@ -22,7 +22,7 @@ public class Main {
             Empleado emp = new Gson().fromJson(req.body(), Empleado.class);
             Empleado insertado = ctrEmpleado.creaEmpleado(emp);
             res.status(201);
-            return insertado;
+            return new Gson().toJson(insertado);
         });
 
         after((req, res) -> {
