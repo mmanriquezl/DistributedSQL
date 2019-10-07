@@ -1,6 +1,6 @@
 package models;
 
-public class Participantes {
+public class Participante {
     private int cod;
     private String rut;
 

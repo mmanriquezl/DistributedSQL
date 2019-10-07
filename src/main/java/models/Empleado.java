@@ -40,5 +40,14 @@ public class Empleado {
         this.nombre = nombre;
     }
 
+    public int getDigito(){
+        String tmp = this.rut.toLowerCase();
+        String[] arr = tmp.split("-");
+        if (arr[1].equals("k")){
+            return 10;
+        }
+        return Integer.parseInt(arr[1]);
+    }
+
 }
 

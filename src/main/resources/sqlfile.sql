@@ -2,37 +2,6 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.10 (Ubuntu 10.10-1.pgdg18.04+1)
--- Dumped by pg_dump version 10.10 (Ubuntu 10.10-1.pgdg18.04+1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
 
 --
 -- Name: dog; Type: TABLE; Schema: public; Owner: tbduser
@@ -143,38 +112,6 @@ ALTER TABLE ONLY public.dog ALTER COLUMN id SET DEFAULT nextval('public.dog_id_s
 --
 
 ALTER TABLE ONLY public.reunion ALTER COLUMN cod SET DEFAULT nextval('public.reunion_cod_seq'::regclass);
-
-
---
--- Data for Name: dog; Type: TABLE DATA; Schema: public; Owner: tbduser
---
-
-COPY public.dog (id, name) FROM stdin;
-\.
-
-
---
--- Data for Name: empleado; Type: TABLE DATA; Schema: public; Owner: tbduser
---
-
-COPY public.empleado (rut, nombre, cargo, email) FROM stdin;
-\.
-
-
---
--- Data for Name: participantes; Type: TABLE DATA; Schema: public; Owner: tbduser
---
-
-COPY public.participantes (rut, cod) FROM stdin;
-\.
-
-
---
--- Data for Name: reunion; Type: TABLE DATA; Schema: public; Owner: tbduser
---
-
-COPY public.reunion (cod, tema, ubicacion, capacidad, hora) FROM stdin;
-\.
 
 
 --
