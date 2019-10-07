@@ -1,10 +1,11 @@
 import static spark.Spark.*;
 
 import com.google.gson.GsonBuilder;
-import controllers.CtrEmpleado;
+
 import com.google.gson.Gson;
 import controllers.CtrParticipantes;
 import controllers.CtrReunion;
+import controllers.CtrEmpleado;
 import models.Empleado;
 import models.Participante;
 import models.Reunion;
@@ -56,8 +57,12 @@ public class Main {
             return gson.toJson(insertado);
         });
 
-        get("/participantes/data", (req, res) -> {
-            return gson.toJson(ctrParticipantes.getFilledParticipante());
+        get("/empleados/reunion/date", (req, res) -> {
+            String year = req.queryParams("year");
+            String month = req.queryParams("month");
+            String day= req.queryParams("day");
+            String date = year+"-"+month+"-"+day;
+            return gson.toJson(ctrParticipantes.getFilledParticipanteByDate(date));
         });
 
         after((req, res) -> {

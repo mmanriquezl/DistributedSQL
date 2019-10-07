@@ -47,15 +47,6 @@ public class CtrEmpleado {
 
     }
 
-//    public List<Empleado> getEmpleadosPaginated(int limit, int offset){
-//        try(Connection conn = sql2o.open()){
-//            return conn.createQuery("select * from empleado limit :limit offset :offset")
-//                    .addParameter("limit", limit)
-//                    .addParameter("offset", offset)
-//                    .executeAndFetch(Empleado.class);
-//        }
-//    }
-
     public Empleado creaEmpleado(Empleado emp){
         int db = emp.getDigito() % sql2o.length;
         try(Connection conn = sql2o[db].open()){
