@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1698f956-1431-4cd7-a3d7-0c59cc71d190" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CtrParticipantes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CtrParticipantes.java" afterDir="false" />
-    </list>
+    <list default="true" id="1698f956-1431-4cd7-a3d7-0c59cc71d190" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +81,7 @@
       <workItem from="1569445734566" duration="4256000" />
       <workItem from="1570218448929" duration="5132000" />
       <workItem from="1570326854539" duration="6013000" />
-      <workItem from="1570369606469" duration="21706000" />
+      <workItem from="1570369606469" duration="21968000" />
     </task>
     <servers />
   </component>
