@@ -7,10 +7,7 @@ import models.Reunion;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -32,6 +29,23 @@ public class CtrParticipantes {
                     .executeUpdate();
             return participante;
         }
+    }
+
+    public Empleado buscaEmpleado(String rut, List<Empleado> lista){
+        for(Empleado e: lista){
+            if(rut.equals(e.getRut())){
+                return e;
+            }
+        }
+        return null;
+    }
+    public Reunion buscaReunion(int cod, List<Reunion> lista){
+        for(Reunion r: lista){
+            if(r.getCod()==cod){
+                return r;
+            }
+        }
+        return null;
     }
 
     public List<FilledParticipante> getFilledParticipante(){
@@ -109,11 +123,15 @@ public class CtrParticipantes {
             }
             executor.shutdown();
             executor.awaitTermination(24*3600, TimeUnit.SECONDS);
-            for(List<Reunion> listReunion:dataReuniones){
-                for(Reunion r: listReunion){
-                    System.out.println("Cod: "+r.getCod()+", Tema: "+r.getTema());
-                }
+            List<Reunion> mergedReuniones = new ArrayList<Reunion>();
+            for( int i = 0; i < sql2o.length; i++){
+                mergedReuniones.addAll(dataReuniones[i]);
             }
+
+            for(Reunion r: mergedReuniones){
+                System.out.println("Cod: "+r.getCod()+", Tema: "+r.getTema());
+            }
+
             executor = Executors.newFixedThreadPool(sql2o.length);
             List<Empleado> [] dataEmpleados = new ArrayList[sql2o.length];
             for( int i = 0; i < sql2o.length; i++){
@@ -141,11 +159,25 @@ public class CtrParticipantes {
             }
             executor.shutdown();
             executor.awaitTermination(24*3600, TimeUnit.SECONDS);
-            for(List<Empleado> listaEmpleados:dataEmpleados){
-                for(Empleado e: listaEmpleados){
-                    System.out.println("Rut: "+e.getRut()+", Nombre: "+e.getNombre());
-                }
+            List<Empleado> mergedEmpleados = new ArrayList<Empleado>();
+            for( int i = 0; i < sql2o.length; i++){
+                mergedEmpleados.addAll(dataEmpleados[i]);
             }
+
+            for(Empleado e: mergedEmpleados){
+                System.out.println("Rut: "+e.getRut()+", Nombre: "+e.getNombre());
+            }
+            for(Participante p:merged){
+                Reunion r = buscaReunion(p.getCod(),mergedReuniones);
+                Empleado e = buscaEmpleado(p.getRut(), mergedEmpleados);
+                FilledParticipante aux =new FilledParticipante();
+                aux.setEmpleado(e);
+                aux.setOriginal(p);
+                aux.setReunion(r);
+                resultado.add(aux);
+            }
+
+
             return resultado;
         } catch (InterruptedException e) {
             e.printStackTrace();
